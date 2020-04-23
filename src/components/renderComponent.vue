@@ -1,0 +1,35 @@
+<script>
+export default {
+  name: 'render-component',
+  props: {
+    /**
+     * @description 传入的render函数
+     */
+    renderFunction: {
+      type: Function,
+      required: true
+    },
+    /**
+     * @description 传入的scope
+     */
+    scope: {
+      default: null
+    },
+    value:{
+      type:String
+    }
+  },
+  render (h) {
+    return this.handleRender(h, this.scope)
+  },
+  inject:["d2Form"],
+  methods: {
+    handleRender (h, scope) {
+      if (typeof scope === 'string') {
+        return this.renderFunction(h, scope)
+      }
+      return this.renderFunction(h, scope.row, scope.column, scope.$index)
+    }
+  }
+}
+</script>

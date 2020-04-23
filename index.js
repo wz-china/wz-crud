@@ -1,2 +1,1 @@
-
-console.log("牛逼111111")
+module.exports = require('./src')
